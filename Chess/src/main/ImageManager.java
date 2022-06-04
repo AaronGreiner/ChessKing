@@ -23,6 +23,19 @@ public class ImageManager {
     private BufferedImage w_queen;
     private BufferedImage w_rook;
     
+    private BufferedImage b_bishop_selected;
+    private BufferedImage b_king_selected;
+    private BufferedImage b_knight_selected;
+    private BufferedImage b_pawn_selected;
+    private BufferedImage b_queen_selected;
+    private BufferedImage b_rook_selected;
+    private BufferedImage w_bishop_selected;
+    private BufferedImage w_king_selected;
+    private BufferedImage w_knight_selected;
+    private BufferedImage w_pawn_selected;
+    private BufferedImage w_queen_selected;
+    private BufferedImage w_rook_selected;
+    
     public ImageManager() {
         
         try {
@@ -40,6 +53,18 @@ public class ImageManager {
             w_queen = ImageIO.read(new File("src\\ressources\\without_shadow\\w_queen.png"));
             w_rook = ImageIO.read(new File("src\\ressources\\without_shadow\\w_rook.png"));
             
+            b_bishop_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_bishop.png"));
+            b_king_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_king.png"));
+            b_knight_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_knight.png"));
+            b_pawn_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_pawn.png"));
+            b_queen_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_queen.png"));
+            b_rook_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_rook.png"));
+            w_bishop_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_bishop.png"));
+            w_king_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_king.png"));
+            w_knight_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_knight.png"));
+            w_pawn_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_pawn.png"));
+            w_queen_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_queen.png"));
+            w_rook_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_rook.png"));
             
         } catch (IOException ex) {
             Logger.getLogger(ImageManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,6 +108,49 @@ public class ImageManager {
                     return w_rook;
                 } else {
                     return b_rook;
+                }
+            default:
+                return null;
+        }
+    }
+    
+    public BufferedImage getImageSelected(boolean isWhite, String name) {
+        switch (name) {
+            case "bishop":
+                if (isWhite) {
+                    return w_bishop_selected;
+                } else {
+                    return b_bishop_selected;
+                }
+            case "king":
+                if (isWhite) {
+                    return w_king_selected;
+                } else {
+                    return b_king_selected;
+                }
+            case "knight":
+                if (isWhite) {
+                    return w_knight_selected;
+                } else {
+                    return b_knight_selected;
+                }
+            case "pawn":
+                if (isWhite) {
+                    return w_pawn_selected;
+                } else {
+                    return b_pawn_selected;
+                }
+            case "queen":
+                if (isWhite) {
+                    return w_queen_selected;
+                } else {
+                    return b_queen_selected;
+                }
+            case "rook":
+                if (isWhite) {
+                    return w_rook_selected;
+                } else {
+                    return b_rook_selected;
                 }
             default:
                 return null;

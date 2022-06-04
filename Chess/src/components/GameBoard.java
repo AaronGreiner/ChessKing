@@ -138,14 +138,13 @@ public class GameBoard extends Panel {
         
         //Figuren:
         for (Piece p : pieces) {
-            if (!p.isKilled) {
+            if (!p.isKilled && p != selectedPiece) {
                 g.drawImage(images.getImage(p.isWhite, p.name), p.x, p.y, this);
             }
         }
         
-        //Workaround, damit grade ausgewählte Figut immer im Vordergrund:
         if (selectedPiece != null) {
-            g.drawImage(images.getImage(selectedPiece.isWhite, selectedPiece.name), selectedPiece.x, selectedPiece.y, this);
+            g.drawImage(images.getImageSelected(selectedPiece.isWhite, selectedPiece.name), selectedPiece.x, selectedPiece.y, this);
         }
         
     }
