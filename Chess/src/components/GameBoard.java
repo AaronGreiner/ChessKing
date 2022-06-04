@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import main.ImageManager;
 import main.Main;
 
 public class GameBoard extends Panel {
@@ -26,6 +27,8 @@ public class GameBoard extends Panel {
     
     LinkedList<Piece> pieces = new LinkedList<>();
     Piece selectedPiece;
+    
+    ImageManager images = new ImageManager();
     
     public GameBoard() {
         init();
@@ -133,19 +136,16 @@ public class GameBoard extends Panel {
             color_w = !color_w;
         }
         
-        try {
-            //Figuren:
-            for (Piece p : pieces) {
-                g.drawImage(ImageIO.read(new File("src\\ressources\\without_shadow\\" + (p.isWhite?"w":"b") + "_" + p.name + ".png")), p.x, p.y, this);
+        //Figuren:
+        for (Piece p : pieces) {
+            if (!p.isKilled) {
+                g.drawImage(images.getImage(p.isWhite, p.name), p.x, p.y, this);
             }
-            
-            //Workaround, damit grade ausgewählte Figut immer im Vordergrund:
-            if ( selectedPiece != null ) {
-                g.drawImage(ImageIO.read(new File("src\\ressources\\without_shadow\\" + (selectedPiece.isWhite?"w":"b") + "_" + selectedPiece.name + ".png")), selectedPiece.x, selectedPiece.y, this);
-            }
-            
-        } catch (IOException ex) {
-            Logger.getLogger(GameBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Workaround, damit grade ausgewählte Figut immer im Vordergrund:
+        if (selectedPiece != null) {
+            g.drawImage(images.getImage(selectedPiece.isWhite, selectedPiece.name), selectedPiece.x, selectedPiece.y, this);
         }
         
     }
@@ -156,7 +156,7 @@ public class GameBoard extends Panel {
         int pos_y = y / sizeSquare;
         
         for (Piece p : pieces) {
-            if (p.pos_x == pos_x && p.pos_y == pos_y) {
+            if (p.pos_x == pos_x && p.pos_y == pos_y && !p.isKilled) {
                 return p;
             }
         }

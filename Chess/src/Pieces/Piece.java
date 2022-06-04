@@ -9,6 +9,7 @@ public class Piece {
     public int x;
     public int y;
     public boolean isWhite;
+    public boolean isKilled;
     public String name;
     LinkedList<Piece> pieces;
     
@@ -21,6 +22,8 @@ public class Piece {
         this.isWhite = isWhite;
         this.name = name; //Gleichzeitig aktuell auch das Bild (ohne w_ / b_ und .png)
         this.pieces = pieces;
+        
+        this.isKilled = false;
         
         pieces.add(this);
     }
@@ -41,6 +44,7 @@ public class Piece {
     }
     
     public void kill() {
-        pieces.remove(this);
+//        pieces.remove(this);
+        isKilled = true;
     }
 }
