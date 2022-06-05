@@ -1,8 +1,8 @@
-package Pieces;
+package Pieces.basic;
 
 import java.util.LinkedList;
 
-public class Piece {
+public abstract class Piece {
     
     public int pos_x;
     public int pos_y;
