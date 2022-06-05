@@ -8,24 +8,24 @@ public abstract class Piece {
     public int pos_y;
     public int x;
     public int y;
-    public boolean isWhite;
-    public boolean isKilled;
+    public boolean is_light;
+    public boolean is_killed;
     public String name;
     
     LinkedList<Piece> pieces;
-    Piece pieceSamePosition;
+    Piece piece_same_position;
     
-    public Piece(int pos_x, int pos_y, boolean isWhite, String name, LinkedList<Piece> pieces) {
+    public Piece(int pos_x, int pos_y, boolean is_white, String name, LinkedList<Piece> pieces) {
         
         this.pos_x = pos_x;
         this.pos_y = pos_y;
-        this.x = pos_x*64;
-        this.y = pos_y*64;
-        this.isWhite = isWhite;
+        this.x = pos_x * 64;
+        this.y = pos_y * 64;
+        this.is_light = is_white;
         this.name = name;
         this.pieces = pieces;
         
-        this.isKilled = false;
+        this.is_killed = false;
     }
     
     public void move(int pos_x, int pos_y) {
@@ -38,7 +38,7 @@ public abstract class Piece {
                 resetPosition();
                 break;
             case 2: //Feld besetzt von anderer Farbe
-                pieceSamePosition.kill();
+                piece_same_position.kill();
                 updatePosition(pos_x, pos_y);
                 break;
             default: //Position aktualisieren
@@ -55,9 +55,9 @@ public abstract class Piece {
         
         //Prüfen ob von anderer Figur besetztes Feld
         for (Piece p : pieces) {
-            if (p.pos_x == pos_x && p.pos_y == pos_y && !p.isKilled) {
-                pieceSamePosition = p;
-                if (p.isWhite == this.isWhite) {
+            if (p.pos_x == pos_x && p.pos_y == pos_y && !p.is_killed) {
+                piece_same_position = p;
+                if (p.is_light == this.is_light) {
                     return 1;
                 } else {
                     return 2;
@@ -69,18 +69,18 @@ public abstract class Piece {
     }
     
     private void resetPosition() {
-        this.x = this.pos_x*64;
-        this.y = this.pos_y*64;
+        this.x = this.pos_x * 64;
+        this.y = this.pos_y * 64;
     }
     
     private void updatePosition(int pos_x, int pos_y) {
         this.pos_x = pos_x;
         this.pos_y = pos_y;
-        this.x = pos_x*64;
-        this.y = pos_y*64;
+        this.x = pos_x * 64;
+        this.y = pos_y * 64;
     }
     
     private void kill() {
-        isKilled = true;
+        is_killed = true;
     }
 }

@@ -13,13 +13,13 @@ public class Main {
     
     public static GameFrame frame;
     
-    private final static FlatDarkLaf lafDark = new FlatDarkLaf();
-    private final static FlatLightLaf lafLight = new FlatLightLaf();
+    private final static FlatDarkLaf laf_dark = new FlatDarkLaf();
+    private final static FlatLightLaf laf_light = new FlatLightLaf();
     
     public static void main(String[] args) {
         
         try {
-            UIManager.setLookAndFeel(lafDark);
+            UIManager.setLookAndFeel(laf_dark);
             
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

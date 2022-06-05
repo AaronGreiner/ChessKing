@@ -14,14 +14,14 @@ import main.ImageManager;
 
 public class GameBoard extends Panel {
     
-    int sizeBoard = 512;
-    int sizeSquare = sizeBoard / 8;
+    int size_board = 512;
+    int size_square = size_board / 8;
     
-    Color white = new Color(153, 153, 102);
-    Color black = new Color(107, 107, 71);
+    Color color_light = new Color(153, 153, 102);
+    Color color_dark = new Color(107, 107, 71);
     
     LinkedList<Piece> pieces = new LinkedList<>();
-    Piece selectedPiece;
+    Piece selected_piece;
     
     ImageManager images = new ImageManager();
     
@@ -32,19 +32,19 @@ public class GameBoard extends Panel {
     
     private void init() {
         
-        this.setPreferredSize(new Dimension(sizeBoard, sizeBoard));
+        this.setPreferredSize(new Dimension(size_board, size_board));
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                selectedPiece = getPieceFromPosition(e.getX(), e.getY());
+                selected_piece = getPieceFromPosition(e.getX(), e.getY());
                 dragPiece(e.getX(), e.getY());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                if (selectedPiece != null) {
-                    selectedPiece.move(e.getX()/sizeSquare, e.getY()/sizeSquare);
-                    selectedPiece = null;
+                if (selected_piece != null) {
+                    selected_piece.move(e.getX()/size_square, e.getY()/size_square);
+                    selected_piece = null;
                     repaint();
                 }
             }
@@ -92,9 +92,9 @@ public class GameBoard extends Panel {
     }
     
     private void dragPiece(int x, int y) {
-        if (selectedPiece != null) {
-            selectedPiece.x = x - sizeSquare / 2;
-            selectedPiece.y = y - sizeSquare / 2;
+        if (selected_piece != null) {
+            selected_piece.x = x - size_square / 2;
+            selected_piece.y = y - size_square / 2;
             this.repaint();
         }
     }
@@ -102,44 +102,44 @@ public class GameBoard extends Panel {
     @Override
     public void paintComponent(Graphics g) {
         
-        boolean color_w = true;
+        boolean color_light_dark = true;
         
         //Spielbrett:
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 
-                if (color_w) {
-                    g.setColor(white);
+                if (color_light_dark) {
+                    g.setColor(color_light);
                 } else {
-                    g.setColor(black);
+                    g.setColor(color_dark);
                 }
                 
-                g.fillRect(x*sizeSquare, y*sizeSquare, sizeSquare, sizeSquare);
-                color_w = !color_w;
+                g.fillRect(x*size_square, y*size_square, size_square, size_square);
+                color_light_dark = !color_light_dark;
             }
-            color_w = !color_w;
+            color_light_dark = !color_light_dark;
         }
         
         //Figuren:
         for (Piece p : pieces) {
-            if (!p.isKilled && p != selectedPiece) {
-                g.drawImage(images.getImage(p.isWhite, p.name), p.x, p.y, this);
+            if (!p.is_killed && p != selected_piece) {
+                g.drawImage(images.getImage(p.is_light, p.name), p.x, p.y, this);
             }
         }
         
-        if (selectedPiece != null) {
-            g.drawImage(images.getImageSelected(selectedPiece.isWhite, selectedPiece.name), selectedPiece.x, selectedPiece.y, this);
+        if (selected_piece != null) {
+            g.drawImage(images.getImageSelected(selected_piece.is_light, selected_piece.name), selected_piece.x, selected_piece.y, this);
         }
         
     }
         
     private Piece getPieceFromPosition(int x, int y) {
         
-        int pos_x = x / sizeSquare;
-        int pos_y = y / sizeSquare;
+        int pos_x = x / size_square;
+        int pos_y = y / size_square;
         
         for (Piece p : pieces) {
-            if (p.pos_x == pos_x && p.pos_y == pos_y && !p.isKilled) {
+            if (p.pos_x == pos_x && p.pos_y == pos_y && !p.is_killed) {
                 return p;
             }
         }
