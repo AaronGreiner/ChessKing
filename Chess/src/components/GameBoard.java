@@ -9,13 +9,7 @@ import Pieces.Piece;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import main.ImageManager;
-import main.Main;
 
 public class GameBoard extends Panel {
     

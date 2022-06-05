@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/G:/NetBeansProjects/Chess/src/main/Main.java</file>
+            <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/components/GameFrame.java</file>
+            <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/Pieces/Piece.java</file>
+            <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/components/GameBoard.java</file>
+            <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/main/Main.java</file>
         </group>
     </open-files>
 </project-private>
