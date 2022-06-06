@@ -17,8 +17,10 @@ public class GameBoard extends Panel {
     int size_board = 512;
     int size_square = size_board / 8;
     
-    Color color_light = new Color(153, 153, 102);
-    Color color_dark = new Color(107, 107, 71);
+    Color color_light = new Color(140, 140, 140);
+    Color color_dark = new Color(50, 50, 50);
+    Color color_highlight_positive = new Color(0, 255, 0, 120);
+    Color color_highlight_negative = new Color(255, 0, 0, 120);
     
     LinkedList<Piece> pieces = new LinkedList<>();
     Piece selected_piece;
@@ -116,6 +118,18 @@ public class GameBoard extends Panel {
                 
                 g.fillRect(x*size_square, y*size_square, size_square, size_square);
                 color_light_dark = !color_light_dark;
+                
+                //Highlight Test:
+                if (y == 2) {
+                    g.setColor(color_highlight_positive);
+                    g.fillRect(x*size_square, y*size_square, size_square, size_square);
+                }
+                
+                //Highlight Test:
+                if (y == 4) {
+                    g.setColor(color_highlight_negative);
+                    g.fillRect(x*size_square, y*size_square, size_square, size_square);
+                }
             }
             color_light_dark = !color_light_dark;
         }
