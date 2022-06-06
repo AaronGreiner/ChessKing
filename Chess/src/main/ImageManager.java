@@ -4,11 +4,14 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-public class ImageManager {
+public class ImageManager extends JFrame {
     
     private BufferedImage b_bishop;
     private BufferedImage b_king;
@@ -40,31 +43,31 @@ public class ImageManager {
         
         try {
             
-            b_bishop = ImageIO.read(new File("src\\ressources\\without_shadow\\b_bishop.png"));
-            b_king = ImageIO.read(new File("src\\ressources\\without_shadow\\b_king.png"));
-            b_knight = ImageIO.read(new File("src\\ressources\\without_shadow\\b_knight.png"));
-            b_pawn = ImageIO.read(new File("src\\ressources\\without_shadow\\b_pawn.png"));
-            b_queen = ImageIO.read(new File("src\\ressources\\without_shadow\\b_queen.png"));
-            b_rook = ImageIO.read(new File("src\\ressources\\without_shadow\\b_rook.png"));
-            w_bishop = ImageIO.read(new File("src\\ressources\\without_shadow\\w_bishop.png"));
-            w_king = ImageIO.read(new File("src\\ressources\\without_shadow\\w_king.png"));
-            w_knight = ImageIO.read(new File("src\\ressources\\without_shadow\\w_knight.png"));
-            w_pawn = ImageIO.read(new File("src\\ressources\\without_shadow\\w_pawn.png"));
-            w_queen = ImageIO.read(new File("src\\ressources\\without_shadow\\w_queen.png"));
-            w_rook = ImageIO.read(new File("src\\ressources\\without_shadow\\w_rook.png"));
+            b_bishop = ImageIO.read(getClass().getResource("/ressources/without_shadow/b_bishop.png"));
+            b_king = ImageIO.read(getClass().getResource("/ressources/without_shadow/b_king.png"));
+            b_knight = ImageIO.read(getClass().getResource("/ressources/without_shadow/b_knight.png"));
+            b_pawn = ImageIO.read(getClass().getResource("/ressources/without_shadow/b_pawn.png"));
+            b_queen = ImageIO.read(getClass().getResource("/ressources/without_shadow/b_queen.png"));
+            b_rook = ImageIO.read(getClass().getResource("/ressources/without_shadow/b_rook.png"));
+            w_bishop = ImageIO.read(getClass().getResource("/ressources/without_shadow/w_bishop.png"));
+            w_king = ImageIO.read(getClass().getResource("/ressources/without_shadow/w_king.png"));
+            w_knight = ImageIO.read(getClass().getResource("/ressources/without_shadow/w_knight.png"));
+            w_pawn = ImageIO.read(getClass().getResource("/ressources/without_shadow/w_pawn.png"));
+            w_queen = ImageIO.read(getClass().getResource("/ressources/without_shadow/w_queen.png"));
+            w_rook = ImageIO.read(getClass().getResource("/ressources/without_shadow/w_rook.png"));
             
-            b_bishop_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_bishop.png"));
-            b_king_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_king.png"));
-            b_knight_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_knight.png"));
-            b_pawn_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_pawn.png"));
-            b_queen_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_queen.png"));
-            b_rook_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\b_rook.png"));
-            w_bishop_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_bishop.png"));
-            w_king_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_king.png"));
-            w_knight_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_knight.png"));
-            w_pawn_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_pawn.png"));
-            w_queen_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_queen.png"));
-            w_rook_selected = ImageIO.read(new File("src\\ressources\\with_shadow\\w_rook.png"));
+            b_bishop_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/b_bishop.png"));
+            b_king_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/b_king.png"));
+            b_knight_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/b_knight.png"));
+            b_pawn_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/b_pawn.png"));
+            b_queen_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/b_queen.png"));
+            b_rook_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/b_rook.png"));
+            w_bishop_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/w_bishop.png"));
+            w_king_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/w_king.png"));
+            w_knight_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/w_knight.png"));
+            w_pawn_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/w_pawn.png"));
+            w_queen_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/w_queen.png"));
+            w_rook_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/w_rook.png"));
             
         } catch (IOException ex) {
             Logger.getLogger(ImageManager.class.getName()).log(Level.SEVERE, null, ex);
