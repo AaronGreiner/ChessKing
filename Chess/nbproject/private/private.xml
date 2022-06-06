@@ -4,9 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/components/GameFrame.java</file>
+            <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/main/Square.java</file>
+            <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/pieces/basic/Piece.java</file>
             <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/components/GameBoard.java</file>
+            <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/main/ImageManager.java</file>
             <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/main/Main.java</file>
-            <file>file:/G:/NetBeansProjects/ChessKing/Chess/src/Pieces/basic/Piece.java</file>
         </group>
     </open-files>
 </project-private>
