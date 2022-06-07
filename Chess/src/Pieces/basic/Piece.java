@@ -9,6 +9,8 @@ public abstract class Piece {
     private boolean is_killed;
     private String name;
     
+    private int move_count;
+    
     private int x_pos_current;
     private int y_pos_current;
     
@@ -26,6 +28,8 @@ public abstract class Piece {
         this.x_pos_current = square.getX() * 64;
         this.y_pos_current = square.getY() * 64;
         
+        this.move_count = 0;
+        
         pieces.add(this);
     }
     
@@ -39,10 +43,16 @@ public abstract class Piece {
                     return;
                 }
             }
-            this.square.setPiece(null);
-            this.square = square;
-            square.setPiece(this);
+            updatePosition(square);
         }
+        
+    }
+    
+    private void updatePosition(Square square) {
+        this.square.setPiece(null);
+        this.square = square;
+        square.setPiece(this);
+        this.move_count++;
     }
     
     public Square getSquare() {
@@ -76,5 +86,15 @@ public abstract class Piece {
     
     public int getCurrentYPosition() {
         return y_pos_current;
+    }
+    
+    public int getMoveCount() {
+        return move_count;
+    }
+    
+    public boolean checkPosition(Square square) {
+        //Muss noch zu einer abstrakten Funktion gemacht werden.
+        //Aktuell wird es zum Testen nur vom Pawn überschrieben.
+        return false;
     }
 }

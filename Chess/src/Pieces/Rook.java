@@ -10,4 +10,22 @@ public class Rook extends Piece {
         super(is_white, "rook", pieces, square);
     }
     
+    @Override
+    public boolean checkPosition(Square square) {
+        
+        Square pos = this.getSquare();
+        
+        if (square == pos) {
+            return false;
+        }
+        
+        if (square.getX() == pos.getX()) {
+            return true;
+        }
+        if (square.getY() == pos.getY()) {
+            return true;
+        }
+        
+        return false;
+    }
 }

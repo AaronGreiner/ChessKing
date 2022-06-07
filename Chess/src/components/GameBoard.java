@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.util.LinkedList;
 import Pieces.basic.Piece;
 import components.basic.Square;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -102,24 +104,43 @@ public class GameBoard extends Panel {
     @Override
     public void paintComponent(Graphics g) {
         
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+        
         //Spielbrett:
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 
                 if (squares[x][y].getIsLight()) {
-                    g.setColor(color_light);
+                    g2.setColor(color_light);
                 } else {
-                    g.setColor(color_dark);
+                    g2.setColor(color_dark);
                 }
                 
-                g.fillRect(squares[x][y].getX() * size_square, squares[x][y].getY() * size_square, size_square, size_square);
+                g2.fillRect(squares[x][y].getX() * size_square, squares[x][y].getY() * size_square, size_square, size_square);
+            }
+        }
+        
+        //Highlights:
+        if (selected_piece != null) {
+            for (int x = 0; x < 8; x++) {
+                for (int y = 0; y < 8; y++) {
+                    
+                    if (selected_piece.checkPosition(squares[x][y])) {
+                        g2.setColor(color_highlight_positive);
+//                        g2.fillRect(squares[x][y].getX() * size_square, squares[x][y].getY() * size_square, size_square, size_square);
+//                        g2.fillOval(squares[x][y].getX() * size_square, squares[x][y].getY() * size_square, size_square, size_square);
+                        g2.fillRoundRect(squares[x][y].getX() * size_square+3, squares[x][y].getY() * size_square+3, size_square-6, size_square-6, 20, 20);
+                    }
+                    
+                }
             }
         }
         
         //Figuren:
         for (Piece p : pieces) {
             if (!p.getIsKilled() && p != selected_piece) {
-                g.drawImage(    images.getImage(p.getIsWhite(), p.getName()),
+                g2.drawImage(    images.getImage(p.getIsWhite(), p.getName()),
                                 p.getSquare().getX() * size_square,
                                 p.getSquare().getY() * size_square,
                                 null);
@@ -128,7 +149,7 @@ public class GameBoard extends Panel {
         
         //Ausgewählte Figur:
         if (selected_piece != null) {
-            g.drawImage(    images.getImageSelected(selected_piece.getIsWhite(), selected_piece.getName()), 
+            g2.drawImage(    images.getImageSelected(selected_piece.getIsWhite(), selected_piece.getName()), 
                             selected_piece.getCurrentXPosition(), 
                             selected_piece.getCurrentYPosition(), 
                             null);
