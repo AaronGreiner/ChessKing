@@ -1,23 +1,37 @@
 package Pieces.basic;
 
+import components.basic.Square;
 import java.util.LinkedList;
 
 public abstract class Piece {
     
-    public boolean is_light;
-    public boolean is_killed;
-    public String name;
+    private boolean is_white;
+    private boolean is_killed;
+    private String name;
     
-    LinkedList<Piece> pieces;
-    Piece piece_same_position;
+    private LinkedList<Piece> pieces;
+    private Square square;
     
-    public Piece(boolean is_light, String name, LinkedList<Piece> pieces) {
+    public Piece(boolean is_white, String name, LinkedList<Piece> pieces, Square square) {
         
-        this.is_light = is_light;
+        this.is_white = is_white;
         this.name = name;
         this.pieces = pieces;
-        
         this.is_killed = false;
+        this.square = square;
+        
+        pieces.add(this);
     }
     
+    public Square getSquare() {
+        return square;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public boolean getIsWhite() {
+        return is_white;
+    }
 }
