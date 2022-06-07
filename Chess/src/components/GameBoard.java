@@ -135,13 +135,16 @@ public class GameBoard extends Panel {
             for (int x = 0; x < 8; x++) {
                 for (int y = 0; y < 8; y++) {
                     
-                    if (selected_piece.checkPosition(squares[x][y])) {
-                        g2.setColor(color_hint_move);
-//                        g2.fillRect(squares[x][y].getX() * size_square, squares[x][y].getY() * size_square, size_square, size_square);
-//                        g2.fillOval(squares[x][y].getX() * size_square, squares[x][y].getY() * size_square, size_square, size_square);
-                        g2.fillRoundRect(squares[x][y].getX() * size_square+3, squares[x][y].getY() * size_square+3, size_square-6, size_square-6, 20, 20);
+                    switch (selected_piece.checkPosition(squares[x][y])) {
+                        case CAPTURE:
+                            g2.setColor(color_hint_capture);
+                            g2.fillRoundRect(squares[x][y].getX() * size_square+3, squares[x][y].getY() * size_square+3, size_square-6, size_square-6, 20, 20);
+                            break;
+                        case MOVE:
+                            g2.setColor(color_hint_move);
+                            g2.fillRoundRect(squares[x][y].getX() * size_square+3, squares[x][y].getY() * size_square+3, size_square-6, size_square-6, 20, 20);
+                            break;
                     }
-                    
                 }
             }
         }

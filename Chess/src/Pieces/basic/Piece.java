@@ -35,7 +35,7 @@ public abstract class Piece {
     
     public void move(Square square) {
         
-        if (square != null && this.square != square && this.checkPosition(square)) {
+        if (square != null && this.square != square && this.checkPosition(square) != MovementHintType.NONE) {
             if (square.getPiece() != null) {
                 if (square.getPiece().getIsWhite() != this.getIsWhite()) {
                     square.getPiece().setIsKilled(true);
@@ -92,9 +92,22 @@ public abstract class Piece {
         return move_count;
     }
     
-    public boolean checkPosition(Square square) {
+    public MovementHintType checkPosition(Square square) {
         //Muss noch zu einer abstrakten Funktion gemacht werden.
         //Aktuell wird es zum Testen nur vom Pawn überschrieben.
-        return false;
+        return MovementHintType.NONE;
+    }
+    
+    protected MovementHintType getReturnForSquare(Square square) {
+        
+        if (square.getPiece() != null) {
+            if (square.getPiece().getIsWhite() == this.getIsWhite()) {
+                return MovementHintType.NONE;
+            } else {
+                return MovementHintType.CAPTURE;
+            }
+        } else {
+            return MovementHintType.MOVE;
+        }
     }
 }

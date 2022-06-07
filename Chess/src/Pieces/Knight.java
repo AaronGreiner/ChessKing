@@ -1,5 +1,6 @@
 package Pieces;
 
+import Pieces.basic.MovementHintType;
 import Pieces.basic.Piece;
 import components.basic.Square;
 import java.util.LinkedList;
@@ -11,40 +12,40 @@ public class Knight extends Piece {
     }
     
     @Override
-    public boolean checkPosition(Square square) {
+    public MovementHintType checkPosition(Square square) {
         
         Square pos = this.getSquare();
         
         if (square == pos) {
-            return false;
+            return MovementHintType.NONE;
         }
         
         if (square.getX() == pos.getX()+2 && square.getY() == pos.getY()+1) {
-            return true;
+            return getReturnForSquare(square);
         }
         if (square.getX() == pos.getX()+2 && square.getY() == pos.getY()-1) {
-            return true;
+            return getReturnForSquare(square);
         }
         if (square.getX() == pos.getX()-2 && square.getY() == pos.getY()+1) {
-            return true;
+            return getReturnForSquare(square);
         }
         if (square.getX() == pos.getX()-2 && square.getY() == pos.getY()-1) {
-            return true;
+            return getReturnForSquare(square);
         }
         
         if (square.getX() == pos.getX()+1 && square.getY() == pos.getY()+2) {
-            return true;
+            return getReturnForSquare(square);
         }
         if (square.getX() == pos.getX()+1 && square.getY() == pos.getY()-2) {
-            return true;
+            return getReturnForSquare(square);
         }
         if (square.getX() == pos.getX()-1 && square.getY() == pos.getY()+2) {
-            return true;
+            return getReturnForSquare(square);
         }
         if (square.getX() == pos.getX()-1 && square.getY() == pos.getY()-2) {
-            return true;
+            return getReturnForSquare(square);
         }
         
-        return false;
+        return MovementHintType.NONE;
     }
 }

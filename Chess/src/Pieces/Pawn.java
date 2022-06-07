@@ -1,5 +1,6 @@
 package Pieces;
 
+import Pieces.basic.MovementHintType;
 import Pieces.basic.Piece;
 import components.basic.Square;
 import java.util.LinkedList;
@@ -11,36 +12,36 @@ public class Pawn extends Piece {
     }
     
     @Override
-    public boolean checkPosition(Square square) {
+    public MovementHintType checkPosition(Square square) {
         
         Square pos = this.getSquare();
         
         if (square == pos) {
-            return false;
+            return MovementHintType.NONE;
         }
         
         if (this.getIsWhite()) {
             if (this.getMoveCount() == 0) {
                 if (square.getX() == pos.getX() && (square.getY() + 1 == pos.getY() || square.getY() + 2 == pos.getY())) {
-                    return true;
+                    return getReturnForSquare(square);
                 }
             } else {
                 if (square.getX() == pos.getX() && square.getY() + 1 == pos.getY()) {
-                    return true;
+                    return getReturnForSquare(square);
                 }
             }
         } else {
             if (this.getMoveCount() == 0) {
                 if (square.getX() == pos.getX() && (square.getY() - 1 == pos.getY() || square.getY() - 2 == pos.getY())) {
-                    return true;
+                    return getReturnForSquare(square);
                 }
             } else {
                 if (square.getX() == pos.getX() && square.getY() - 1 == pos.getY()) {
-                    return true;
+                    return getReturnForSquare(square);
                 }
             }
         }
         
-        return false;
+        return MovementHintType.NONE;
     }
 }
