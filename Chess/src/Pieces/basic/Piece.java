@@ -35,7 +35,7 @@ public abstract class Piece {
     
     public void move(Square square) {
         
-        if (square != null && this.square != square) {
+        if (square != null && this.square != square && this.checkPosition(square)) {
             if (square.getPiece() != null) {
                 if (square.getPiece().getIsWhite() != this.getIsWhite()) {
                     square.getPiece().setIsKilled(true);
