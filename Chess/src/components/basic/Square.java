@@ -21,6 +21,10 @@ public class Square {
         this.piece = piece;
     }
     
+    public Piece getPiece() {
+        return piece;
+    }
+    
     public boolean getIsLight() {
         return is_light;
     }

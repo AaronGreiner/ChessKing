@@ -41,18 +41,23 @@ public class GameBoard extends Panel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                
+                selected_piece = getPieceFromPosition(e.getX(), e.getY());
+                dragPiece(e.getX(), e.getY());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                
+                if (selected_piece != null) {
+                    selected_piece.move(getSquareFromCursor(e.getX(), e.getY()));
+                    selected_piece = null;
+                    repaint();
+                }
             }
         });
         this.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                
+                dragPiece(e.getX(), e.getY());
             }
         });
         
@@ -113,10 +118,51 @@ public class GameBoard extends Panel {
         
         //Figuren:
         for (Piece p : pieces) {
-            g.drawImage(images.getImage(p.getIsWhite(), p.getName()), p.getSquare().getX() * size_square, p.getSquare().getY() * size_square, null);
+            if (!p.getIsKilled() && p != selected_piece) {
+                g.drawImage(    images.getImage(p.getIsWhite(), p.getName()),
+                                p.getSquare().getX() * size_square,
+                                p.getSquare().getY() * size_square,
+                                null);
+            }
         }
         
+        //Ausgewählte Figur:
+        if (selected_piece != null) {
+            g.drawImage(    images.getImageSelected(selected_piece.getIsWhite(), selected_piece.getName()), 
+                            selected_piece.getCurrentXPosition(), 
+                            selected_piece.getCurrentYPosition(), 
+                            null);
+        }
         
     }
     
+    private Piece getPieceFromPosition(int x, int y) {
+        
+        for (Piece p : pieces) {
+            if (!p.getIsKilled() && p.getSquare().getX() == x / size_square && p.getSquare().getY() == y / size_square) {
+                return p;
+            }
+        }
+        return null;
+    }
+    
+    private Square getSquareFromCursor(int x, int y) {
+        
+        int pos_x = x / size_square;
+        int pos_y = y / size_square;
+        
+        if (pos_x >= 0 && pos_x < 8 && pos_y >= 0 && pos_y < 8) {
+            return squares[pos_x][pos_y];
+        }
+        return null;
+    }
+    
+    private void dragPiece(int x, int y) {
+        
+        if (selected_piece != null) {
+            selected_piece.setCurrentPosition(x, y);
+        }
+        
+        repaint();
+    }
 }
