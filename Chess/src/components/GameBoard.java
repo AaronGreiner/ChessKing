@@ -22,8 +22,8 @@ public class GameBoard extends Panel {
     
     Color color_light = new Color(140, 140, 140);
     Color color_dark = new Color(50, 50, 50);
-    Color color_highlight_positive = new Color(0, 255, 0, 120);
-    Color color_highlight_negative = new Color(255, 0, 0, 120);
+    Color color_hint_move = new Color(0, 255, 0, 120);
+    Color color_hint_capture = new Color(255, 0, 0, 120);
     
     Square[][] squares = new Square[8][8];
     
@@ -107,7 +107,14 @@ public class GameBoard extends Panel {
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
         
-        //Spielbrett:
+        paintBoard(g2);
+        paintHints(g2);
+        paintPieces(g2);
+        paintSelectedPiece(g2);
+    }
+    
+    private void paintBoard(Graphics2D g2) {
+        
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 
@@ -120,14 +127,16 @@ public class GameBoard extends Panel {
                 g2.fillRect(squares[x][y].getX() * size_square, squares[x][y].getY() * size_square, size_square, size_square);
             }
         }
+    }
+    
+    private void paintHints(Graphics2D g2) {
         
-        //Highlights:
         if (selected_piece != null) {
             for (int x = 0; x < 8; x++) {
                 for (int y = 0; y < 8; y++) {
                     
                     if (selected_piece.checkPosition(squares[x][y])) {
-                        g2.setColor(color_highlight_positive);
+                        g2.setColor(color_hint_move);
 //                        g2.fillRect(squares[x][y].getX() * size_square, squares[x][y].getY() * size_square, size_square, size_square);
 //                        g2.fillOval(squares[x][y].getX() * size_square, squares[x][y].getY() * size_square, size_square, size_square);
                         g2.fillRoundRect(squares[x][y].getX() * size_square+3, squares[x][y].getY() * size_square+3, size_square-6, size_square-6, 20, 20);
@@ -136,25 +145,28 @@ public class GameBoard extends Panel {
                 }
             }
         }
+    }
+    
+    private void paintPieces(Graphics2D g2) {
         
-        //Figuren:
         for (Piece p : pieces) {
             if (!p.getIsKilled() && p != selected_piece) {
-                g2.drawImage(    images.getImage(p.getIsWhite(), p.getName()),
+                g2.drawImage(   images.getImage(p.getIsWhite(), p.getName()),
                                 p.getSquare().getX() * size_square,
                                 p.getSquare().getY() * size_square,
                                 null);
             }
         }
+    }
+    
+    private void paintSelectedPiece(Graphics2D g2) {
         
-        //Ausgewählte Figur:
         if (selected_piece != null) {
-            g2.drawImage(    images.getImageSelected(selected_piece.getIsWhite(), selected_piece.getName()), 
+            g2.drawImage(   images.getImageSelected(selected_piece.getIsWhite(), selected_piece.getName()), 
                             selected_piece.getCurrentXPosition(), 
                             selected_piece.getCurrentYPosition(), 
                             null);
         }
-        
     }
     
     private Piece getPieceFromPosition(int x, int y) {
