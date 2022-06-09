@@ -153,11 +153,18 @@ public class GameBoard extends Panel {
     private void paintPieces(Graphics2D g2) {
         
         for (Piece p : pieces) {
-            if (!p.getIsKilled() && p != selected_piece) {
-                g2.drawImage(   images.getImage(p.getIsWhite(), p.getName()),
-                                p.getSquare().getX() * size_square,
-                                p.getSquare().getY() * size_square,
-                                null);
+            if (!p.getIsKilled()) {
+                if (p == selected_piece) {
+                    g2.drawImage(   images.getImageAlpha(p.getIsWhite(), p.getName()),
+                                    p.getSquare().getX() * size_square,
+                                    p.getSquare().getY() * size_square,
+                                    null);
+                } else {
+                    g2.drawImage(   images.getImage(p.getIsWhite(), p.getName()),
+                                    p.getSquare().getX() * size_square,
+                                    p.getSquare().getY() * size_square,
+                                    null);
+                }
             }
         }
     }
