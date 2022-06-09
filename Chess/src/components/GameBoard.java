@@ -43,8 +43,10 @@ public class GameBoard extends Panel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                selected_piece = getPieceFromPosition(e.getX(), e.getY());
-                dragPiece(e.getX(), e.getY());
+                if (selected_piece == null) {
+                    selected_piece = getPieceFromPosition(e.getX(), e.getY());
+                    dragPiece(e.getX(), e.getY());
+                }
             }
 
             @Override
