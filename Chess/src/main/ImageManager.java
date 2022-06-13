@@ -1,15 +1,11 @@
 package main;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class ImageManager extends JFrame {
     
@@ -38,6 +34,19 @@ public class ImageManager extends JFrame {
     private BufferedImage w_pawn_selected;
     private BufferedImage w_queen_selected;
     private BufferedImage w_rook_selected;
+    
+    private BufferedImage b_bishop_alpha;
+    private BufferedImage b_king_alpha;
+    private BufferedImage b_knight_alpha;
+    private BufferedImage b_pawn_alpha;
+    private BufferedImage b_queen_alpha;
+    private BufferedImage b_rook_alpha;
+    private BufferedImage w_bishop_alpha;
+    private BufferedImage w_king_alpha;
+    private BufferedImage w_knight_alpha;
+    private BufferedImage w_pawn_alpha;
+    private BufferedImage w_queen_alpha;
+    private BufferedImage w_rook_alpha;
     
     public ImageManager() {
         
@@ -68,6 +77,19 @@ public class ImageManager extends JFrame {
             w_pawn_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/w_pawn.png"));
             w_queen_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/w_queen.png"));
             w_rook_selected = ImageIO.read(getClass().getResource("/ressources/with_shadow/w_rook.png"));
+            
+            b_bishop_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/b_bishop.png"));
+            b_king_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/b_king.png"));
+            b_knight_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/b_knight.png"));
+            b_pawn_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/b_pawn.png"));
+            b_queen_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/b_queen.png"));
+            b_rook_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/b_rook.png"));
+            w_bishop_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/w_bishop.png"));
+            w_king_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/w_king.png"));
+            w_knight_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/w_knight.png"));
+            w_pawn_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/w_pawn.png"));
+            w_queen_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/w_queen.png"));
+            w_rook_alpha = ImageIO.read(getClass().getResource("/ressources/alpha/w_rook.png"));
             
         } catch (IOException ex) {
             Logger.getLogger(ImageManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -154,6 +176,49 @@ public class ImageManager extends JFrame {
                     return w_rook_selected;
                 } else {
                     return b_rook_selected;
+                }
+            default:
+                return null;
+        }
+    }
+    
+    public BufferedImage getImageAlpha(boolean isWhite, String name) {
+        switch (name) {
+            case "bishop":
+                if (isWhite) {
+                    return w_bishop_alpha;
+                } else {
+                    return b_bishop_alpha;
+                }
+            case "king":
+                if (isWhite) {
+                    return w_king_alpha;
+                } else {
+                    return b_king_alpha;
+                }
+            case "knight":
+                if (isWhite) {
+                    return w_knight_alpha;
+                } else {
+                    return b_knight_alpha;
+                }
+            case "pawn":
+                if (isWhite) {
+                    return w_pawn_alpha;
+                } else {
+                    return b_pawn_alpha;
+                }
+            case "queen":
+                if (isWhite) {
+                    return w_queen_alpha;
+                } else {
+                    return b_queen_alpha;
+                }
+            case "rook":
+                if (isWhite) {
+                    return w_rook_alpha;
+                } else {
+                    return b_rook_alpha;
                 }
             default:
                 return null;
